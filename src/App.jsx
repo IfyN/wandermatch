@@ -10,6 +10,18 @@ function App() {
 
   console.log("Current filters:", filters);
 
+  const toggleMood = (mood) => {
+  if (filters.moods.includes(mood)) {
+    // Remove mood
+    const newMoods = filters.moods.filter(m => m !== mood);
+    setFilters({ ...filters, moods: newMoods });
+  } else {
+    // Add mood
+    const newMoods = [...filters.moods, mood];
+    setFilters({ ...filters, moods: newMoods });
+  }
+};
+
   return (
     <div>
       <h1>WanderMatch</h1>
@@ -47,13 +59,34 @@ function App() {
           value={filters.duration}
           onChange={(e) => setFilters({ ...filters, duration: e.target.value })}
         >
-          <option value="">Any Type</option>
+          <option value="">Any Duration</option>
           <option value="day"> Day Trip</option>
           <option value="weekend">Weekend</option>
           <option value="week">Week</option>
         
         </select>
       </div>
+
+      <div>
+  <label>Mood (select multiple):</label>
+  <div>
+    <button onClick={() => toggleMood('peaceful')}>
+      {filters.moods.includes('peaceful') ? '✓ ' : ''}peaceful
+    </button>
+    <button onClick={() => toggleMood('active')}>
+      {filters.moods.includes('active') ? '✓ ' : ''}active
+    </button>
+    <button onClick={() => toggleMood('cultural')}>
+      {filters.moods.includes('cultural') ? '✓ ' : ''}cultural
+    </button>
+    <button onClick={() => toggleMood('scenic')}>
+      {filters.moods.includes('scenic') ? '✓ ' : ''}scenic
+    </button>
+    <button onClick={() => toggleMood('relaxing')}>
+      {filters.moods.includes('relaxing') ? '✓ ' : ''}relaxing
+    </button>
+  </div>
+</div>
     </div>
   );
 }
