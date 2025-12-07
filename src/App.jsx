@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
+import TripDetailsPage from "./pages/TripDetailsPage";
 import { mockTrips } from "./data/mockTrips";
 import "./App.css";
 
@@ -14,8 +15,6 @@ function App() {
   });
 
   const [filteredTrips, setFilteredTrips] = useState(mockTrips);
-
-  console.log("Current filters:", filters);
 
   // This does the actual filtering with given filter values
   const filterTripsWithValues = (filterValues) => {
@@ -48,6 +47,7 @@ function App() {
   const handleFilterChange = (field, value) => {
     const newFilters = { ...filters, [field]: value };
     setFilters(newFilters);
+
     filterTripsWithValues(newFilters); // Filter with NEW values
   };
 
@@ -85,8 +85,17 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/trips/:id" element={<TripDetailPage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              filters={filters}
+              filteredTrips={filteredTrips}
+              onToggleMood={toggleMood}
+            />
+          }
+        />
+        <Route path="/trips/:id" element={<TripDetailsPage />} />
       </Routes>
     </div>
   );
