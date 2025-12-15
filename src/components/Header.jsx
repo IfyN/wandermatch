@@ -1,4 +1,4 @@
-function Header({ filters, handleFilterChange, resetFilters }) {
+function Header({ filters, onFilterChange, onReset }) {
   return (
     <header className="header">
       <h1 className="logo">🧳 WanderMatch</h1>
@@ -8,7 +8,7 @@ function Header({ filters, handleFilterChange, resetFilters }) {
           <select
             id="budget-select"
             value={filters.budget}
-            onChange={(e) => handleFilterChange("budget", e.target.value)}
+            onChange={(e) => onFilterChange("budget", e.target.value)}
           >
             <option value="">Any</option>
             <option value="low">£50-150</option>
@@ -24,7 +24,7 @@ function Header({ filters, handleFilterChange, resetFilters }) {
           <select
             id="type-select"
             value={filters.type}
-            onChange={(e) => handleFilterChange("type", e.target.value)}
+            onChange={(e) => onFilterChange("type", e.target.value)}
           >
             <option value="">Any</option>
             <option value="nature">Nature</option>
@@ -42,7 +42,7 @@ function Header({ filters, handleFilterChange, resetFilters }) {
           <select
             id="duration-select"
             value={filters.duration}
-            onChange={(e) => handleFilterChange("duration", e.target.value)}
+            onChange={(e) => onFilterChange("duration", e.target.value)}
           >
             <option value="">Any</option>
             <option value="day">Day Trip</option>
@@ -62,7 +62,7 @@ function Header({ filters, handleFilterChange, resetFilters }) {
         </button>
       </nav>
 
-      <button className="reset-button" onClick={resetFilters} type="button">
+      <button className="reset-button" onClick={onReset} type="button">
         Reset
       </button>
     </header>

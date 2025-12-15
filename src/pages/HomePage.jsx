@@ -14,7 +14,7 @@ function HomePage({ filters, filteredTrips, onToggleMood }) {
                 className={
                   filters.moods.includes(mood) ? "mood-btn active" : "mood-btn"
                 }
-                onClick={() => toggleMood(mood)}
+                onClick={() => onToggleMood(mood)}
                 type="button"
                 aria-pressed={filters.moods.includes(mood)}
               >
