@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function HomePage({ filters, filteredTrips, onToggleMood }) {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="mood-section" aria-labelledby="mood-heading">
@@ -42,7 +46,18 @@ function HomePage({ filters, filteredTrips, onToggleMood }) {
         ) : (
           <div className="trip-grid">
             {filteredTrips.map((trip) => (
-              <article key={trip.id} className="trip-card">
+              <article
+                key={trip.id}
+                className="trip-card"
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate(`/trips/${trip.id}`)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    navigate(`/trips/${trip.id}`);
+                  }
+                }}
+              >
                 <div className="card-image-container">
                   <img
                     src={trip.image}
