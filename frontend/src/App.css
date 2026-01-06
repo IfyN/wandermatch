@@ -9,9 +9,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Targeting #root specifically as requested.
-   This overrides common boilerplate defaults (like max-width: 1280px).
-*/
 #root {
   width: 100%;
   max-width: none !important; /* Force full width */
@@ -538,7 +535,6 @@ body {
 .trip-card:focus:not(:focus-visible) {
   outline: none;
 }
-
 /* Responsive */
 @media (max-width: 768px) {
   .detail-nav,
